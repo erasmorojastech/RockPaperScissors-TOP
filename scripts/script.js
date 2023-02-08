@@ -51,18 +51,3 @@ function game() {
     console.log(round);
   }
 }
-
-for (w = 0, l = 0; w<=5 || l<=5;) {
-
-  game();
-
-  if (w === 5) {
-    console.log('Congratulations, you win!');
-    break;
-  }
-
-  if (l === 5) {
-    console.log(`You've lost. Maybe next time!`);
-    break;
-  }
-}
