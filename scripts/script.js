@@ -1,5 +1,14 @@
 'use strict'
 
+// Variables
+let w = 0,
+  l = 0;
+
+// Elements from DOM
+const $rock = document.querySelector('#rock'),
+  $paper = document.querySelector('#paper'),
+  $scissors = document.querySelector('#scissors');
+
 // This gets a random selection of the computer
 function getComputerChoice() {
   let computer = Math.floor(Math.random() * (3 - 1 + 1) + 1);
@@ -25,29 +34,30 @@ function playRound(playerSelection, computerSelection) {
   if (player === 'paper' && computer === 'scissors') return 'You lose! Scissors cuts paper';
   if (player === 'scissors' && computer === 'rock') return 'You lose! Rock smashes Scissors';
   if (player === 'scissors' && computer === 'paper') return 'You win! Scissors cuts Paper';
-
 }
 
 // Updating the score of winnings and looses
-
-let w = 0, l=0;
-
-function game() {
-
-  let playerSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
+function game(playerSelection) {
 
   const computerSelection = getComputerChoice(),
     round = playRound(playerSelection, computerSelection);
 
-  if (round.search('win') !== -1) {
-    console.log(round);
-    w++;
-    console.log(`You: ${w} | PC: ${l}`);
-  } else if (round.search('lose') !== -1) {
-    console.log(round);
-    l++;
-    console.log(`You: ${w} | PC: ${l}`);
-  } else if (round.search('Tie') !== -1) {
-    console.log(round);
-  }
+  if (round.search('win') !== -1) w++;
+  if (round.search('lose') !== -1) l++;
+
+  console.log(round);
+  console.log(`You ${w} | PC ${l}`)
 }
+
+// Click Events on Buttons
+$rock.addEventListener('click', () => {
+  game('rock');
+});
+
+$paper.addEventListener('click', () => {
+  game('paper');
+});
+
+$scissors.addEventListener('click', () => {
+  game('scissors');
+});
