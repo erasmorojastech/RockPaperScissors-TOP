@@ -27,3 +27,42 @@ function playRound(playerSelection, computerSelection) {
   if (player === 'scissors' && computer === 'paper') return 'You win! Scissors cuts Paper';
 
 }
+
+// Updating the score of winnings and looses
+
+let w = 0, l=0;
+
+function game() {
+
+  let playerSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
+
+  const computerSelection = getComputerChoice(),
+    round = playRound(playerSelection, computerSelection);
+
+  if (round.search('win') !== -1) {
+    console.log(round);
+    w++;
+    console.log(`You: ${w} | PC: ${l}`);
+  } else if (round.search('lose') !== -1) {
+    console.log(round);
+    l++;
+    console.log(`You: ${w} | PC: ${l}`);
+  } else if (round.search('Tie') !== -1) {
+    console.log(round);
+  }
+}
+
+for (w = 0, l = 0; w<=5 || l<=5;) {
+
+  game();
+
+  if (w === 5) {
+    console.log('Congratulations, you win!');
+    break;
+  }
+
+  if (l === 5) {
+    console.log(`You've lost. Maybe next time!`);
+    break;
+  }
+}
