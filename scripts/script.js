@@ -7,7 +7,12 @@ let w = 0,
 // Elements from DOM
 const $rock = document.querySelector('#rock'),
   $paper = document.querySelector('#paper'),
-  $scissors = document.querySelector('#scissors');
+  $scissors = document.querySelector('#scissors'),
+  $restartBtn = document.createElement('button'),
+  $restart = document.querySelector('.restart'),
+  $message = document.querySelector('.message'),
+  $win = document.querySelector('#win'),
+  $lose = document.querySelector('#lose');
 
 // This gets a random selection of the computer
 function getComputerChoice() {
@@ -34,6 +39,7 @@ function playRound(playerSelection, computerSelection) {
   if (player === 'paper' && computer === 'scissors') return 'You lose! Scissors cuts paper';
   if (player === 'scissors' && computer === 'rock') return 'You lose! Rock smashes Scissors';
   if (player === 'scissors' && computer === 'paper') return 'You win! Scissors cuts Paper';
+
 }
 
 // Updating the score of winnings and looses
@@ -42,11 +48,49 @@ function game(playerSelection) {
   const computerSelection = getComputerChoice(),
     round = playRound(playerSelection, computerSelection);
 
-  if (round.search('win') !== -1) w++;
-  if (round.search('lose') !== -1) l++;
+  if (round.search('win') !== -1) {
+    w++;
+    $win.innerHTML = `${w}`;
+  } else if (round.search('lose') !== -1) {
+    l++;
+    $lose.innerHTML = `${l}`;
+  }
 
-  console.log(round);
-  console.log(`You ${w} | PC ${l}`)
+  $message.innerHTML = `${round}`;
+
+  if (w === 5) {
+    $message.innerHTML = `Congratulations! You have won!`;
+    gameOver();
+  }
+
+  if (l === 5) {
+    $message.innerHTML = `You have lost! Maybe next time!`;
+    gameOver();
+  }
+}
+
+// Finishing the game when the score hits 5
+function gameOver() {
+  $rock.setAttribute('disabled', 'true');
+  $paper.setAttribute('disabled', 'true');
+  $scissors.setAttribute('disabled', 'true');
+  $restartBtn.innerHTML = 'Restart';
+  $restart.appendChild($restartBtn);
+}
+
+// Restarting the score to 0 and enabling the options
+function restartGame() {
+  $rock.removeAttribute('disabled');
+  $paper.removeAttribute('disabled');
+  $scissors.removeAttribute('disabled');
+
+  $restart.removeChild($restartBtn);
+  $message.innerHTML = `Welcome to a new game!`;
+
+  w = 0;
+  l = 0;
+  $win.innerHTML = `${w}`;
+  $lose.innerHTML = `${l}`;
 }
 
 // Click Events on Buttons
@@ -60,4 +104,8 @@ $paper.addEventListener('click', () => {
 
 $scissors.addEventListener('click', () => {
   game('scissors');
+});
+
+$restartBtn.addEventListener('click', () => {
+  restartGame();
 });
