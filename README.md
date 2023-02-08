@@ -13,7 +13,7 @@ This project is created using:
 * JavaScript
 
 ## Project status
-In process
+Completed
 
 ## Live Preview
 [Rock-Paper-Scissors](https://erasmorojastech.github.io/RockPaperScissors-TOP/)
