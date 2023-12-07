@@ -1,8 +1,11 @@
+let humanScore = 0
+let computerScore = 0
+
 function getComputerChoice() {
-    let random_choice = Math.floor(Math.random() * (3 - 1 + 1) + 1);
+    let randomChoice = Math.floor(Math.random() * (3 - 1 + 1) + 1);
     let choice = ''
 
-    if (random_choice === 1)
+    if (randomChoice === 1)
         choice = 'rock'
     else if (random_choice === 2)
         choice = 'paper'
@@ -13,7 +16,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    let human_choice = prompt("Rock, Paper or Scissors?").toLowerCase();
+    let humanChoice = prompt("Rock, Paper or Scissors?").toLowerCase();
 
-    return human_choice
+    return humanChoice
 }
