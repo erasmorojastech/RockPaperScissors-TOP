@@ -49,7 +49,18 @@ function playRound(humanChoice, computerChoice){
     return gameResult
 }
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice()
+function getRoundResult() {
+    let humanSelection = getHumanChoice();
+    let computerSelection = getComputerChoice();
+    console.log(`${playRound(humanSelection, computerSelection)}\n\tYou : ${humanScore} | Computer : ${computerScore}`);
+}
 
-console.log(playRound(humanSelection, computerSelection))
+function playGame() {
+    getRoundResult();
+    getRoundResult();
+    getRoundResult();
+    getRoundResult();
+    getRoundResult();
+}
+
+playGame()
