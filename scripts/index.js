@@ -23,3 +23,8 @@ const getComputerChoice = function () {
   return computerChoice;
 };
 
+const getHumanChoice = function () {
+  let humanChoice = "";
+  humanChoice = prompt('Rock, Paper or Scissors');
+  return humanChoice.toLowerCase();
+};
